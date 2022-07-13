@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareAride</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="custom.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <img src="/images/car-sharing-2.png" alt="car sharing picture" width="40" height="34"> 
+                ShareRide</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active"  href="#">MyRides</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active"  href="#">UserControl</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active"  href="#">ShareRide in numbers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active"  href="#">Search</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active"  href="#">Publish a ride</a>
+                  </li class="nav-item">
+                  <li>
+                    <div class="dropdown text-end">
+                      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                      </a>
+                      <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" data-popper-placement="bottom-end" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 34.4px, 0px);">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Sign in</a></li>
+                        <li><a class="dropdown-item" href="#">Sign up</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main>
+     <div class="container border solid">
+        <form>
+            <dv class="row justify-content-end"> 
+                <dv class="col-md-8 border solid">
+                    <div class="row justify-content-end">
+                        <div class="col-md-10 border solid">
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label">Departure</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput2" class="form-label">Arrival</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                            </div>
+                        </div>
+                    </div>              
+                </dv>
+            </dv>
+            <div class="row justify-content-end">
+                <div class="col-md-11 border solid" id="map">
+                  
+                </div>
+            </div>
+        </form>
+        
+     </div>
+    </main>
+    <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2022 Company, Inc</p>
+      </footer>
+    </div>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
