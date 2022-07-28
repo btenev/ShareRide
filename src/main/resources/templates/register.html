@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareRide</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href=/css/custom.css>
+</head>
+
+<body>
+    <header>
+        <th:block th:include="~{/fragments/nav.html}"/>
+    </header>
+    <main>
+      <div class="register container my-4 border solid">Register User
+        <div class="row justify-content-center">
+          <div class="col-md-8 border solid">
+            <form th:action="@{/users/register}"
+                  th:method="post"
+                  th:object="${userModel}">
+              <div class="row">
+
+                <div class="col-md-6 border solid" >
+
+                  <div class="w-75">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                        <input type="text"
+                               class="form-control is-invalid"
+                               id="email"
+                               th:field="*{email}"
+                               aria-describedby="inputGroupPrepend3 emailFeedback" required>
+                        <div id="emailFeedback" class="invalid-feedback">Please enter your email.</div>
+                    </div>
+                  </div>
+    
+                  <div class="w-75">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text"
+                           class="form-control is-valid"
+                           id="firstName"
+                           th:field="*{firstName}"
+                           value="Mark" required>
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+    
+                  <div class="w-75">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text"
+                           class="form-control is-valid"
+                           id="lastName"
+                           th:field="*{lastName}"
+                           value="Otto" required>
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+    
+                  <div class="w-75">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select is-invalid"
+                            id="gender"
+                            aria-describedby="genderFeedback" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option th:each="g : ${T(softuni.bg.model.enums.GenderEnum).values()}"
+                              th:text="${g}"
+                              th:value="${g}"
+                              th:selected="${g} == *{gender}"
+                      >Genders</option>
+                    </select>
+                    <div id="genderFeedback" class="invalid-feedback">
+                        Not empty.
+                    </div>
+                  </div>
+
+                  <div class="w-75">
+                    <label for="birthdate" class="form-label">Birthdate</label>
+                    <input type="date"
+                           class="form-control is-valid"
+                           th:field="*{birthDate}"
+                           id="birthdate"
+                           value="Otto" required>
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>  
+
+                  <div class="w-75">
+                    <label for="phoneNumber" class="form-label">Phone number</label>
+                    <input type="text"
+                           class="form-control is-valid"
+                           id="phoneNumber"
+                           th:field="*{phoneNumber}"
+                           value="+359.." required>
+                    <div class="valid-feedback">Looks good!</div>
+                  </div> 
+
+                </div> 
+                
+                <div class="col-md-6  border solid">
+                  <div class="w-75">
+                    <label for="country" class="form-label">Country</label>
+                    <select class="form-select is-invalid"
+                            id="country"
+                            th:field="*{address.country}"
+                            aria-describedby="countryFeedback" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option th:value="BG">Bulgaria</option>
+                    </select>
+                  <div id="countryFeedback" class="invalid-feedback">Please select a valid state.</div>
+                  </div>
+    
+                  <div class="w-75">
+                    <label for="city" class="form-label">City</label>
+                    <select class="form-select is-invalid"
+                            id="city"
+                            th:field="*{address.city}"
+                            aria-describedby="cityFeedback" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option th:value="Sofia">Sofia</option>
+                      <option th:value="Plovdiv">Plovdiv</option>
+                      <option th:value="Varna">Varna</option>
+                      <option th:value="Burgas">Burgas</option>
+                      <option th:value="Haskovo">Haskovo</option>
+                      </select>
+                    <div id="cityFeedback" class="invalid-feedback">Please select a valid city.</div>
+                  </div>
+                
+                  <div class="w-75">
+                    <label for="street" class="form-label">Street</label>
+                    <input type="text"
+                           class="form-control is-invalid"
+                           id="street"
+                           th:field="*{address.street}"
+                           aria-describedby="streetFeedback" required>
+                    <div id="streetFeedback" class="invalid-feedback">Please provide a street address.</div>
+                  </div>     
+
+                  <div class="w-75">
+                    <label for="validationServer05" class="form-label">Postal code</label>
+                    <input type="text"
+                           class="form-control is-invalid"
+                           id="validationServer05"
+                           th:field="*{address.postalCode}"
+                           aria-describedby="validationServer05Feedback" required>
+                    <div id="validationServer05Feedback" class="invalid-feedback">Please provide a valid postal code.</div>
+                  </div>
+
+                  <div class="w-75">
+                    <label for="communication" class="form-label">Communication</label>
+                    <select class="form-select is-invalid"
+                            id="communication"
+                            aria-describedby="communicationFeedback" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option th:each="c : ${T(softuni.bg.model.enums.CommunicationEnum).values()}"
+                              th:text="${c.getMessage()}"
+                              th:value="${c.getMessage()}"
+                              th:selected="${c.getMessage()} == *{communication}"
+                      >Communications</option>
+                    </select>
+                    <div id="communicationFeedback" class="invalid-feedback">
+                        Not empty.
+                    </div>
+                  </div>
+
+                  <div class="w-75">
+                    <label for="smoking" class="form-label">Smoking</label>
+                    <select class="form-select is-invalid"
+                            id="smoking"
+                            aria-describedby="smokingFeedback" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option th:each="s : ${T(softuni.bg.model.enums.SmokingEnum).values()}"
+                              th:text="${s.getMessage()}"
+                              th:value="${s.getMessage()}"
+                              th:selected="${s.getMessage()} == *{smoking}"
+                      >Smoking</option>
+                    </select>
+                    <div id="smokingFeedback" class="invalid-feedback">
+                        Not empty.
+                    </div>
+                  </div>
+
+                  <div class="w-75">
+                    <label for="music" class="form-label">Music</label>
+                    <select class="form-select is-invalid"
+                            id="music"
+                            aria-describedby="musicFeedback" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option th:each="m : ${T(softuni.bg.model.enums.MusicEnum).values()}"
+                              th:text="${m.getMessage()}"
+                              th:value="${m.getMessage()}"
+                              th:selected="${m.getMessage()} == *{music}"
+                      >Music</option>
+                    </select>
+                    <div id="musicFeedback" class="invalid-feedback">
+                        Not empty.
+                    </div>
+                  </div>
+
+                  <div class="w-75">
+                    <label for="pets" class="form-label">Pet</label>
+                    <select class="form-select is-invalid"
+                            id="pets"
+                            aria-describedby="petsFeedback" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option th:each="p : ${T(softuni.bg.model.enums.PetEnum).values()}"
+                              th:text="${p.getMessage()}"
+                              th:value="${p.getMessage()}"
+                              th:selected="${p.getMessage()} == *{pet}"
+                      >Pets</option>
+                    </select>
+                    <div id="petsFeedback" class="invalid-feedback">
+                        Not empty.
+                    </div>
+                  </div>
+
+                </div>
+                  
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-4">
+                  <div class="form-check">
+                    <input class="form-check-input is-invalid"
+                           type="checkbox" value=""
+                           id="invalidCheck3"
+                           aria-describedby="invalidCheck3Feedback" required>
+                    <label class="form-check-label" for="invalidCheck3">Agree to terms and conditions</label>
+                    <div id="invalidCheck3Feedback" class="invalid-feedback">You must agree before submitting.</div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                  </div>
+                </div>
+                
+              </div>   
+            </form>  
+          </div>
+        </div>
+        
+      </div>
+    </main>
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            </ul>
+            <p class="text-center text-muted">© 2022 Company, Inc</p>
+        </footer>
+    </div>
+    <script src="/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
