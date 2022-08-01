@@ -98,9 +98,10 @@
                                         <input type="time"
                                                class="form-control"
                                                id="departureTime"
+                                               th:field="*{departureTime}"
                                         />
                                         <div th:if="${#fields.hasErrors('departureTime')}"
-                                             th:errors="*{departureDate}"
+                                             th:errors="*{departureTime}"
                                              class="bg-danger rounded">
                                         </div>
                                     </div>
@@ -150,7 +151,7 @@
                                                 th:field="*{baggageQuantity}"
                                         >
                                             <option selected value="">Choose...</option>
-                                            <option th:each="b : ${T(softuni.bg.model.enums.LanguageEnum).values()}"
+                                            <option th:each="b : ${T(softuni.bg.model.enums.BaggageEnum).values()}"
                                                     th:value="${b}"
                                                     th:text="${b}"
                                                     th:selected="${b} == *{baggageQuantity}">

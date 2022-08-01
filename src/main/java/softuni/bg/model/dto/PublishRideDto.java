@@ -28,6 +28,7 @@ public class PublishRideDto {
 
     @NotNull(message = "Please, enter departure time!")
     @Future(message = "Time of departure can not be now or in the past!")
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime departureTime;
 
     @NotNull(message = "Please, select the number of available seats!")

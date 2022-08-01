@@ -40,6 +40,6 @@ public class RideController {
             return "redirect:publish";
         }
 
-        return "redirect:/";
+        return "redirect:index";
     }
 }
