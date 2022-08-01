@@ -1,17 +1,17 @@
 .register{
-    background-image: url("/static/images/register-main-01.jpg");
+    background-image: url("/images/register-main-01.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .login{
-    background-image: url("/static/images/login-main-01.jpg");
+    background-image: url("/images/login-main-01.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
-#map{
+#googleMap{
     min-height: 500px;
 }

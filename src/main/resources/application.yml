@@ -1,16 +1,25 @@
 spring:
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 1234
-    url: jdbc:mysql://localhost:3306/share_a_ride?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    hibernate:
-      ddl-auto: update
-    open-in-view: false
-    defer-datasource-initialization: true
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        username: root
+        password: 1234
+        url: jdbc:mysql://localhost:3306/share_a_ride?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        hibernate:
+            ddl-auto: update
+        open-in-view: false
+        defer-datasource-initialization: true
+
 #  sql:
 #    init:
 #      mode: always
+
+#logging:
+#    level:
+#        org:
+#            hibernate:
+#                SQL: DEBUG
+#                type:
+#                    descriptor: TRACE
 

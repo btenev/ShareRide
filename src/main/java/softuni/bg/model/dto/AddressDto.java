@@ -1,19 +1,18 @@
 package softuni.bg.model.dto;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 public class AddressDto {
-    @NotBlank(message = "Please enter your country!")
+    @NotBlank(message = "Please, enter your country!")
     private String country;
 
-    @NotBlank(message = "Please enter your city!")
+    @NotBlank(message = "Please, enter your city!")
     private String city;
 
-    @NotBlank(message = "Please enter your postal code!")
+    @NotBlank(message = "Please, enter your postal code!")
     private String postalCode;
 
-    @NotBlank(message = "Please enter your street!")
+    @NotBlank(message = "Please, enter your street!")
     private String street;
 
     public AddressDto() {
@@ -54,4 +53,5 @@ public class AddressDto {
         this.street = street;
         return this;
     }
+
 }

@@ -44,11 +44,11 @@ public class UserRegisterController {
                     .addFlashAttribute("org.springframework.validation.BindingResult.userModel",
                             bindingResult);
 
-            // TODO: 20.7.2022 г. register user in database
-
             return "redirect:register";
         }
 
-        return "redirect:users/login";
+        this.userService.register(userModel);
+
+        return "redirect:/users/login";
     }
 }

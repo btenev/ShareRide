@@ -4,6 +4,8 @@ import softuni.bg.model.enums.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 @Entity
@@ -20,7 +22,7 @@ public class UserEntity extends BaseEntity {
     private String lastName;
 
     @Column(nullable = false)
-    private LocalDate birthDate;
+    private LocalDate birthdate;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
@@ -29,14 +31,11 @@ public class UserEntity extends BaseEntity {
     private String password;
 
     @Column(nullable = false)
-    private String confirmPassword;
-
-    @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(name = "user_language", nullable = false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private LanguageEnum userLanguage;
+    private LanguageEnum language;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CommunicationEnum communication;
@@ -50,14 +49,15 @@ public class UserEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SmokingEnum smoking;
 
-    @OneToOne(optional = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private AddressEntity address;
 
-    @OneToMany
-    private Set<RoleEntity> roles;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<RoleEntity> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "driver")
-    private List<RideEntity> rides;
+    @OneToMany
+    private List<RideEntity> rides = new ArrayList<>();
 
     public UserEntity() {
     }
@@ -89,12 +89,12 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public UserEntity setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public UserEntity setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
         return this;
     }
 
@@ -116,21 +116,12 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public LanguageEnum getLanguage() {
+        return language;
     }
 
-    public UserEntity setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-        return this;
-    }
-
-    public LanguageEnum getUserLanguage() {
-        return userLanguage;
-    }
-
-    public UserEntity setUserLanguage(LanguageEnum userLanguage) {
-        this.userLanguage = userLanguage;
+    public UserEntity setLanguage(LanguageEnum language) {
+        this.language = language;
         return this;
     }
 
@@ -206,5 +197,13 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
+    public UserEntity addRole(RoleEntity role) {
+        this.roles.add(role);
+        return this;
+    }
 
+    public UserEntity addRide(RideEntity ride) {
+        this.rides.add(ride);
+        return this;
+    }
 }

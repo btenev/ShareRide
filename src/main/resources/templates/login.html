@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShareRide</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href=/css/custom.css>
+    <link rel="stylesheet" href="/css/custom.css">
 </head>
 <body>
     <header>
@@ -17,19 +17,32 @@
         <div class="login container border solid my-4">
             <div class="row vh-100 justify-content-center">
                 <div class="col-md-4 align-self-center border solid">
-                    <form>
+                    <form th:action="@{/users/login}"
+                          th:method="post"  >
+
                         <div class="mb-3 w-75">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control is-invalid" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text invalid-feedback">We'll never share your email with anyone else.</div>
+                            <label for="username"
+                                   class="form-label">Email</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="username"
+                                   name="username"
+                                   th:value="${username}"
+                            />
                         </div>
+
                         <div class="mb-3 w-75">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control is-invalid" id="exampleInputPassword1">
-                            <div id="passwordHelpBlock" class="form-text invalid-feedback">
-                                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-                              </div>
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password"
+                                   class="form-control"
+                                   id="password"
+                                   name="password"
+                            />
+                            <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                                Invalid username or password.
+                            </p>
                         </div>
+
                         <button type="submit" class="btn btn-primary">Submit</button>
                     
                     </form>

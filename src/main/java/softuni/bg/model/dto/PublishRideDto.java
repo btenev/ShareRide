@@ -1,57 +1,56 @@
-package softuni.bg.model.entity;
+package softuni.bg.model.dto;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import softuni.bg.model.enums.BaggageEnum;
 import softuni.bg.model.enums.SeatEnum;
 
-import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity
-@Table(name = "rides")
-public class RideEntity extends BaseEntity {
+public class PublishRideDto {
 
-    @Column(nullable = false)
+    @NotBlank(message = "Please, enter your departure location!")
     private String departure;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Please, enter your arrival location!")
     private String arrival;
 
-    @Column(name = "departure_date", nullable = false)
+    @NotNull(message = "Please, enter your departure date!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent(message = "Date can not be in the past!")
     private LocalDate departureDate;
 
-    @Column(name = "departure_time", nullable = false)
+    @NotNull(message = "Please, enter departure time!")
+    @Future(message = "Time of departure can not be now or in the past!")
     private LocalTime departureTime;
 
-    @Column(name = "number_of_seats", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Please, select the number of available seats!")
     private SeatEnum numberOfSeats;
 
-    @Column(name = "baggage_quantity", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Please, select the size of the allowed luggage!")
     private BaggageEnum baggageQuantity;
 
-    @Column(nullable = false)
     private BigDecimal price;
 
-    @Column(name = "trip_information", columnDefinition = "TEXT")
     private String tripInformation;
 
-    @ManyToOne
-    private RoleEntity driver;
+    @Valid
+    private CarDto car;
 
-    @ManyToOne
-    private CarEntity car;
-
-    public RideEntity() {
+    public PublishRideDto() {
     }
 
     public String getDeparture() {
         return departure;
     }
 
-    public RideEntity setDeparture(String departure) {
+    public PublishRideDto setDeparture(String departure) {
         this.departure = departure;
         return this;
     }
@@ -60,7 +59,7 @@ public class RideEntity extends BaseEntity {
         return arrival;
     }
 
-    public RideEntity setArrival(String arrival) {
+    public PublishRideDto setArrival(String arrival) {
         this.arrival = arrival;
         return this;
     }
@@ -69,7 +68,7 @@ public class RideEntity extends BaseEntity {
         return departureDate;
     }
 
-    public RideEntity setDepartureDate(LocalDate departureDate) {
+    public PublishRideDto setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
         return this;
     }
@@ -78,7 +77,7 @@ public class RideEntity extends BaseEntity {
         return departureTime;
     }
 
-    public RideEntity setDepartureTime(LocalTime departureTime) {
+    public PublishRideDto setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
         return this;
     }
@@ -87,7 +86,7 @@ public class RideEntity extends BaseEntity {
         return numberOfSeats;
     }
 
-    public RideEntity setNumberOfSeats(SeatEnum numberOfSeats) {
+    public PublishRideDto setNumberOfSeats(SeatEnum numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
         return this;
     }
@@ -96,7 +95,7 @@ public class RideEntity extends BaseEntity {
         return baggageQuantity;
     }
 
-    public RideEntity setBaggageQuantity(BaggageEnum baggageQuantity) {
+    public PublishRideDto setBaggageQuantity(BaggageEnum baggageQuantity) {
         this.baggageQuantity = baggageQuantity;
         return this;
     }
@@ -105,7 +104,7 @@ public class RideEntity extends BaseEntity {
         return price;
     }
 
-    public RideEntity setPrice(BigDecimal price) {
+    public PublishRideDto setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -114,26 +113,19 @@ public class RideEntity extends BaseEntity {
         return tripInformation;
     }
 
-    public RideEntity setTripInformation(String tripInformation) {
+    public PublishRideDto setTripInformation(String tripInformation) {
         this.tripInformation = tripInformation;
         return this;
     }
 
-    public RoleEntity getDriver() {
-        return driver;
-    }
-
-    public RideEntity setDriver(RoleEntity driver) {
-        this.driver = driver;
-        return this;
-    }
-
-    public CarEntity getCar() {
+    public CarDto getCar() {
         return car;
     }
 
-    public RideEntity setCar(CarEntity car) {
+    public PublishRideDto setCar(CarDto car) {
         this.car = car;
         return this;
     }
+
+
 }

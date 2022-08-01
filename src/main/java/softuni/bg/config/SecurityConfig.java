@@ -1,6 +1,5 @@
 package softuni.bg.config;
 
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,7 +38,7 @@ public class SecurityConfig {
                 .antMatchers("/pages/admins").hasRole(RoleEnum.ADMIN.name())
                 // all other pages are accessible after user authentication - logged user
                 .anyRequest().authenticated()
-        .and()
+                .and()
                 // configuration of form login
                 .formLogin()
                 // the custom login form
@@ -52,7 +51,7 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/")
                 // where to go if login has failed
                 .failureForwardUrl("/users/login-error")
-        .and()
+                .and()
                 // configure logout
                 .logout()
                 // which is the logout Url
@@ -60,7 +59,8 @@ public class SecurityConfig {
                 // on logout go to the home page
                 .logoutSuccessUrl("/")
                 // invalidate the session and delete the cookies
-                .invalidateHttpSession(true).deleteCookies("JSESSIONID");
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
         return http.build();
     }
 }

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareRide</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+<header>
+    <th:block th:include="~{/fragments/nav.html}"/>
+</header>
+<main>
+    <form th:action="@{/rides/publish}"
+          th:method="post"
+          th:object="${publishRideModel}">
+
+        <div class="container border solid">
+
+            <div class="row justify-content-end">
+                <div class="col-md-8 border solid">
+                    <div class="row justify-content-end">
+                        <div class="col-md-10 border solid">
+
+                            <div class="mb-3">
+                                <label for="from" class="form-label">Departure</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="from"
+                                       th:field="*{departure}"
+                                       placeholder="please enter starting point"
+                                />
+                                <p th:if="${#fields.hasErrors('departure')}"
+                                   th:errors="*{departure}"
+                                   class="invalid-feedback errors alert alert-danger">
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="to" class="form-label">Arrival</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="to"
+                                       th:field="*{arrival}"
+                                       placeholder="please enter end point"
+                                />
+                                <p th:if="${#fields.hasErrors('arrival')}"
+                                   th:errors="*{arrival}"
+                                   class="invalid-feedback errors alert alert-danger">
+                                </p>
+                            </div>
+
+                            <div class="mb-3">
+                                <button class="btn btn-info-lg" onclick="calcRoute();">Calculate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-md-11 border solid" id="googleMap"></div>
+                <div class="col-md-11 border solid" id="output"></div>
+            </div>
+
+        </div>
+
+        <div class="container border solid mt-4">
+            <div class="row justify-content-end">
+                <div class="col-md-11 border solid">
+                    <div class="row">
+                        <div class="col-md-4 border solid">
+                            <p>Date & time</p>
+                        </div>
+                        <div class="col-md-8 border solid">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="mb-3 w-75">
+                                        <label for="departureDate" class="form-label">Departure date</label>
+                                        <input type="date"
+                                               class="form-control"
+                                               id="departureDate"
+                                               th:field="*{departureDate}"
+                                        />
+                                        <div th:if="${#fields.hasErrors('departureDate')}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3 w-75">
+                                        <label for="departureTime" class="form-label">Time departure</label>
+                                        <input type="time"
+                                               class="form-control"
+                                               id="departureTime"
+                                        />
+                                        <div th:if="${#fields.hasErrors('departureTime')}"
+                                             th:errors="*{departureDate}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-11 border solid">
+                    <div class="row">
+                        <div class="col-md-4 border solid">
+                            <p>More details</p>
+                        </div>
+                        <div class="col-md-8 border solid">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="mb-3 w-75">
+                                        <label for="numberOfSeats" class="form-label">Number of seats</label>
+                                        <select class="form-select"
+                                                id="numberOfSeats"
+                                                th:field="*{numberOfSeats}"
+                                        >
+                                            <option selected value="">Choose...</option>
+                                            <option th:each="s : ${T(softuni.bg.model.enums.SeatEnum).values()}"
+                                                    th:value="${s}"
+                                                    th:text="${s.value}"
+                                                    th:selected="${s} == *{numberOfSeats}">
+                                            </option>
+                                        </select>
+                                        <div th:if="${#fields.hasErrors('numberOfSeats')}"
+                                             th:errors="*{numberOfSeats}"
+                                             class="invalid-feedback">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="mb-3 w-75">
+                                        <label for="baggageQuantity" class="form-label">Allowed luggage</label>
+                                        <select class="form-select"
+                                                id="baggageQuantity"
+                                                th:field="*{baggageQuantity}"
+                                        >
+                                            <option selected value="">Choose...</option>
+                                            <option th:each="b : ${T(softuni.bg.model.enums.LanguageEnum).values()}"
+                                                    th:value="${b}"
+                                                    th:text="${b}"
+                                                    th:selected="${b} == *{baggageQuantity}">
+                                            </option>
+                                        </select>
+                                        <div th:if="${#fields.hasErrors('baggageQuantity')}"
+                                             th:errors="*{baggageQuantity}"
+                                             class="invalid-feedback">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-11 border solid">
+                                    <div>
+                                        <label for="price" class="form-label">Estimated price</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="price"
+                                               th:field="*{price}"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label for="tripInformation" class="form-label">Extra trip
+                                            information</label>
+                                        <textarea class="form-control"
+                                                  id="tripInformation"
+                                                  th:field="*{tripInformation}"
+                                                  rows="6"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-11 border solid">
+                    <div class="row">
+                        <div class="col-md-4 border solid">
+                            <p>Car details</p>
+                        </div>
+                        <div class="col-md-8 border solid">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="mb-3 w-75">
+                                        <label for="brand" class="form-label">Car brand</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="brand"
+                                               th:field="*{car.brand}"
+                                        />
+                                        <div th:if="${#fields.hasErrors('car.brand')}"
+                                             th:errors="*{car.brand}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 w-75">
+                                        <label for="color" class="form-label">Car color</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="color"
+                                               th:field="*{car.color}"
+                                        />
+                                        <div th:if="${#fields.hasErrors('car.color')}"
+                                             th:errors="*{car.color}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="mb-3 w-75">
+                                        <label for="model" class="form-label">Car model</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="model"
+                                               th:field="*{car.model}"
+                                        />
+                                        <div th:if="${#fields.hasErrors('car.model')}"
+                                             th:errors="*{car.model}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 w-75">
+                                        <label for="licensePlate" class="form-label">Car license plate</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="licensePlate"
+                                               th:field="*{car.licensePlate}"
+                                        />
+                                        <div th:if="${#fields.hasErrors('car.licensePlate')}"
+                                             th:errors="*{car.licensePlate}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row  justify-content-end">
+                <div class="col-md-11 border solid">
+                    <div class="mb-3">
+                        <button class="btn btn-info-lg">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</main>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2022 Company, Inc</p>
+    </footer>
+</div>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfYtwqdbf2aEIkKukIKEqwbKyYkxC4n0c&libraries=places">
+</script>
+<script src="/js/google-javascript.js"></script>
+<script src="/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

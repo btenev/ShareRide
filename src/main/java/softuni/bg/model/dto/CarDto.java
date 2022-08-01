@@ -1,24 +1,25 @@
-package softuni.bg.model.entity;
+package softuni.bg.model.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "cars")
-public class CarEntity extends BaseEntity {
+public class CarDto {
+    @NotBlank(message = "Please, enter the brand of the ride vehicle!")
     private String brand;
+    @NotBlank(message = "Please, enter the model of the ride vehicle!")
     private String model;
+    @NotBlank(message = "Please, enter the color of the ride vehicle!")
     private String color;
+    @NotBlank(message = "Please, enter the license plate of the ride vehicle!")
     private String licensePlate;
 
-    public CarEntity() {
+    public CarDto() {
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public CarEntity setBrand(String brand) {
+    public CarDto setBrand(String brand) {
         this.brand = brand;
         return this;
     }
@@ -27,7 +28,7 @@ public class CarEntity extends BaseEntity {
         return model;
     }
 
-    public CarEntity setModel(String model) {
+    public CarDto setModel(String model) {
         this.model = model;
         return this;
     }
@@ -36,7 +37,7 @@ public class CarEntity extends BaseEntity {
         return color;
     }
 
-    public CarEntity setColor(String color) {
+    public CarDto setColor(String color) {
         this.color = color;
         return this;
     }
@@ -45,7 +46,7 @@ public class CarEntity extends BaseEntity {
         return licensePlate;
     }
 
-    public CarEntity setLicensePlate(String licensePlate) {
+    public CarDto setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
         return this;
     }

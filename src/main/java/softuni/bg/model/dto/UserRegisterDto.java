@@ -1,28 +1,30 @@
 package softuni.bg.model.dto;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import softuni.bg.model.entity.AddressEntity;
-import softuni.bg.model.entity.RideEntity;
-import softuni.bg.model.entity.RoleEntity;
 import softuni.bg.model.enums.*;
+import softuni.bg.model.validation.FieldMatch;
+import softuni.bg.model.validation.UniqueUserEmail;
 
-import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword",
+        message = "Passwords do no match!"
+)
 public class UserRegisterDto {
     @NotBlank(message = "Please, enter your email!")
     @Email(message = "User email should be valid!")
+    @UniqueUserEmail(message = "User email should be unique!")
     private String email;
 
     @NotBlank(message = "Please enter your first name!")
-    @Size(min = 2, max = 30, message = "First name must be between 2 and 30 characters!" )
+    @Size(min = 2, max = 30, message = "First name must be between 2 and 30 characters!")
     private String firstName;
 
     @NotBlank(message = "Please enter your last name!")
@@ -31,39 +33,36 @@ public class UserRegisterDto {
 
     @NotNull(message = "Please enter your birthdate!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthDate;
+    private LocalDate birthdate;
 
     @NotNull(message = "Please, select your gender!")
     private GenderEnum gender;
 
-    //custom password annotation
+    @NotBlank(message = "Password field cannot be empty!")
+    @Size(min = 5, max = 20, message = "Password must be between 5 and 20 characters!")
     private String password;
 
-    //custom password annotation
     private String confirmPassword;
 
     @NotNull(message = "Please select your language!")
-    private LanguageEnum userLanguage;
+    private LanguageEnum language;
 
-    @NotBlank
+    @NotBlank(message = "Please, enter your phone number!")
     private String phoneNumber; //todo: better validation of phone number!
-    @NotNull
+    @NotNull(message = "Please, select how talkative are you!")
     private CommunicationEnum communication;
 
-    @NotNull
+    @NotNull(message = "Please, select do you listen music while driving!")
     private MusicEnum music;
 
-    @NotNull
+    @NotNull(message = "Please, select do you like pets!")
     private PetEnum pet;
 
-    @NotNull
+    @NotNull(message = "Please, select do you tolerate smoking!")
     private SmokingEnum smoking;
 
-    @NotNull
+    @Valid
     private AddressDto address;
-    @NotNull
-    private Set<RoleEntity> roles;
-    private List<RideEntity> rides = new ArrayList<>();
 
     public UserRegisterDto() {
     }
@@ -95,12 +94,12 @@ public class UserRegisterDto {
         return this;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public UserRegisterDto setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public UserRegisterDto setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
         return this;
     }
 
@@ -131,12 +130,12 @@ public class UserRegisterDto {
         return this;
     }
 
-    public LanguageEnum getUserLanguage() {
-        return userLanguage;
+    public LanguageEnum getLanguage() {
+        return language;
     }
 
-    public UserRegisterDto setUserLanguage(LanguageEnum userLanguage) {
-        this.userLanguage = userLanguage;
+    public UserRegisterDto setLanguage(LanguageEnum language) {
+        this.language = language;
         return this;
     }
 
@@ -185,24 +184,6 @@ public class UserRegisterDto {
         return this;
     }
 
-    public Set<RoleEntity> getRoles() {
-        return roles;
-    }
-
-    public UserRegisterDto setRoles(Set<RoleEntity> roles) {
-        this.roles = roles;
-        return this;
-    }
-
-    public List<RideEntity> getRides() {
-        return rides;
-    }
-
-    public UserRegisterDto setRides(List<RideEntity> rides) {
-        this.rides = rides;
-        return this;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -211,4 +192,6 @@ public class UserRegisterDto {
         this.phoneNumber = phoneNumber;
         return this;
     }
+
+
 }
