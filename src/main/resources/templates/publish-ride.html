@@ -37,7 +37,7 @@
                                 />
                                 <p th:if="${#fields.hasErrors('departure')}"
                                    th:errors="*{departure}"
-                                   class="invalid-feedback errors alert alert-danger">
+                                   class="bg-danger rounded">
                                 </p>
                             </div>
                             <div class="mb-3">
@@ -50,7 +50,7 @@
                                 />
                                 <p th:if="${#fields.hasErrors('arrival')}"
                                    th:errors="*{arrival}"
-                                   class="invalid-feedback errors alert alert-danger">
+                                   class="bg-danger rounded">
                                 </p>
                             </div>
 
@@ -87,6 +87,7 @@
                                                th:field="*{departureDate}"
                                         />
                                         <div th:if="${#fields.hasErrors('departureDate')}"
+                                             th:errors="*{departureDate}"
                                              class="bg-danger rounded">
                                         </div>
                                     </div>
@@ -137,7 +138,7 @@
                                         </select>
                                         <div th:if="${#fields.hasErrors('numberOfSeats')}"
                                              th:errors="*{numberOfSeats}"
-                                             class="invalid-feedback">
+                                             class="bg-danger rounded">
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +160,7 @@
                                         </select>
                                         <div th:if="${#fields.hasErrors('baggageQuantity')}"
                                              th:errors="*{baggageQuantity}"
-                                             class="invalid-feedback">
+                                             class="bg-danger rounded">
                                         </div>
                                     </div>
                                 </div>
@@ -276,7 +277,6 @@
                 </div>
             </div>
         </div>
-
     </form>
 </main>
 <div class="container">

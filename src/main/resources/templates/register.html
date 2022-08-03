@@ -289,7 +289,7 @@
                                             th:selected="${p} == *{pet}">
                                     </option>
                                 </select>
-                                <div th:if="*{#fields.hasErrors('pet')}"
+                                <div th:if="${#fields.hasErrors('pet')}"
                                      th:errors="*{pet}"
                                      class="bg-danger rounded">
                                 </div>

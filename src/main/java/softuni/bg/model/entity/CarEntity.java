@@ -49,4 +49,5 @@ public class CarEntity extends BaseEntity {
         this.licensePlate = licensePlate;
         return this;
     }
+
 }

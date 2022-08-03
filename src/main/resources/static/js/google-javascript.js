@@ -1,5 +1,5 @@
-const mylatlng = {lat: 42.6977, lng: 23.3219};
-const mapOptions = {
+var mylatlng = {lat: 42.6977, lng: 23.3219};
+var mapOptions = {
     center: mylatlng,
     zoom: 10,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -7,7 +7,7 @@ const mapOptions = {
 
 //create Map
 
-const map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
 
 //create a directions service object to use the route method and get a result for our request
 
@@ -61,7 +61,8 @@ function calcRoute() {
 //create autocomplete objects for all input
 
 const options = {
-    types: ['(cities)']
+    types: ['(cities)'],
+    componentRestrictions: {country: 'bg'}
 };
 
 const input1 = document.getElementById("from");

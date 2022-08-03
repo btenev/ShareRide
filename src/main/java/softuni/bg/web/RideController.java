@@ -8,12 +8,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.bg.model.dto.PublishRideDto;
+import softuni.bg.service.RideService;
 
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/rides")
 public class RideController {
+
+    private final RideService rideService;
+
+    public RideController(RideService rideService) {
+        this.rideService = rideService;
+    }
 
     @GetMapping("/publish")
     public String publishRide(Model model) {
@@ -31,15 +38,17 @@ public class RideController {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes
-                    .addAttribute("publishRideModel", publishRideModel);
+                    .addFlashAttribute("publishRideModel", publishRideModel);
 
             redirectAttributes
-                    .addAttribute("org.springframework.validation.BindingResult.publishRideModel",
+                    .addFlashAttribute("org.springframework.validation.BindingResult.publishRideModel",
                             bindingResult);
 
             return "redirect:publish";
         }
 
-        return "redirect:index";
+//        this.rideService.saveRide(publishRideModel);
+
+        return "redirect:/";
     }
 }

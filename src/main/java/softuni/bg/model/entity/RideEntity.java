@@ -32,7 +32,7 @@ public class RideEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private BaggageEnum baggageQuantity;
 
-    @Column(nullable = false)
+
     private BigDecimal price;
 
     @Column(name = "trip_information", columnDefinition = "TEXT")
@@ -136,4 +136,6 @@ public class RideEntity extends BaseEntity {
         this.car = car;
         return this;
     }
+
+
 }

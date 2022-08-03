@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .antMatchers("/pages/admins").hasRole(RoleEnum.ADMIN.name())
                 // all other pages are accessible after user authentication - logged user
                 .anyRequest().authenticated()
-                .and()
+        .and()
                 // configuration of form login
                 .formLogin()
                 // the custom login form
@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/")
                 // where to go if login has failed
                 .failureForwardUrl("/users/login-error")
-                .and()
+            .and()
                 // configure logout
                 .logout()
                 // which is the logout Url
