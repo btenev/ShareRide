@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .antMatchers("/css/**", "/js/**", "/images/**", "/bootstrap/**").permitAll()
                 // everyone can log in and register
                 .antMatchers("/", "/users/login", "/users/register").permitAll()
+                .antMatchers("/rides/**").permitAll()
                 // pages accessible to the admin
                 .antMatchers("/pages/admins").hasRole(RoleEnum.ADMIN.name())
                 // all other pages are accessible after user authentication - logged user
@@ -51,7 +52,7 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/")
                 // where to go if login has failed
                 .failureForwardUrl("/users/login-error")
-            .and()
+        .and()
                 // configure logout
                 .logout()
                 // which is the logout Url

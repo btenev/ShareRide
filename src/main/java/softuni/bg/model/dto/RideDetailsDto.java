@@ -1,55 +1,55 @@
 package softuni.bg.model.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import softuni.bg.model.entity.CarEntity;
 import softuni.bg.model.enums.BaggageEnum;
 import softuni.bg.model.enums.SeatEnum;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class PublishRideDto {
+public class RideDetailsDto {
 
-    @NotBlank(message = "Please, enter your departure location!")
+    private Long id;
+
     private String departure;
 
-    @NotBlank(message = "Please, enter your arrival location!")
     private String arrival;
 
-    @NotNull(message = "Please, enter your departure date!")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Future(message = "Date should be in the future!")
     private LocalDate departureDate;
 
-    @NotNull(message = "Please, enter departure time!")
-    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime departureTime;
 
-    @NotNull(message = "Please, select the number of available seats!")
     private SeatEnum numberOfSeats;
 
-    @NotNull(message = "Please, select the size of the allowed luggage!")
     private BaggageEnum baggageQuantity;
 
     private BigDecimal price;
 
     private String tripInformation;
 
-    @Valid
     private CarDto car;
 
-    public PublishRideDto() {
+    private UserRegisterDto driver;
+
+    public RideDetailsDto() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public RideDetailsDto setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getDeparture() {
         return departure;
     }
 
-    public PublishRideDto setDeparture(String departure) {
+    public RideDetailsDto setDeparture(String departure) {
         this.departure = departure;
         return this;
     }
@@ -58,7 +58,7 @@ public class PublishRideDto {
         return arrival;
     }
 
-    public PublishRideDto setArrival(String arrival) {
+    public RideDetailsDto setArrival(String arrival) {
         this.arrival = arrival;
         return this;
     }
@@ -67,7 +67,7 @@ public class PublishRideDto {
         return departureDate;
     }
 
-    public PublishRideDto setDepartureDate(LocalDate departureDate) {
+    public RideDetailsDto setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
         return this;
     }
@@ -76,7 +76,7 @@ public class PublishRideDto {
         return departureTime;
     }
 
-    public PublishRideDto setDepartureTime(LocalTime departureTime) {
+    public RideDetailsDto setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
         return this;
     }
@@ -85,7 +85,7 @@ public class PublishRideDto {
         return numberOfSeats;
     }
 
-    public PublishRideDto setNumberOfSeats(SeatEnum numberOfSeats) {
+    public RideDetailsDto setNumberOfSeats(SeatEnum numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
         return this;
     }
@@ -94,7 +94,7 @@ public class PublishRideDto {
         return baggageQuantity;
     }
 
-    public PublishRideDto setBaggageQuantity(BaggageEnum baggageQuantity) {
+    public RideDetailsDto setBaggageQuantity(BaggageEnum baggageQuantity) {
         this.baggageQuantity = baggageQuantity;
         return this;
     }
@@ -103,7 +103,7 @@ public class PublishRideDto {
         return price;
     }
 
-    public PublishRideDto setPrice(BigDecimal price) {
+    public RideDetailsDto setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -112,7 +112,7 @@ public class PublishRideDto {
         return tripInformation;
     }
 
-    public PublishRideDto setTripInformation(String tripInformation) {
+    public RideDetailsDto setTripInformation(String tripInformation) {
         this.tripInformation = tripInformation;
         return this;
     }
@@ -121,10 +121,17 @@ public class PublishRideDto {
         return car;
     }
 
-    public PublishRideDto setCar(CarDto car) {
+    public RideDetailsDto setCar(CarDto car) {
         this.car = car;
         return this;
     }
 
+    public UserRegisterDto getDriver() {
+        return driver;
+    }
 
+    public RideDetailsDto setDriver(UserRegisterDto driver) {
+        this.driver = driver;
+        return this;
+    }
 }

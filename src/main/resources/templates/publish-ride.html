@@ -16,60 +16,103 @@
     <th:block th:include="~{/fragments/nav.html}"/>
 </header>
 <main>
-    <form th:action="@{/rides/publish}"
-          th:method="post"
-          th:object="${publishRideModel}">
 
-        <div class="container border solid">
 
-            <div class="row justify-content-end">
-                <div class="col-md-8 border solid">
-                    <div class="row justify-content-end">
-                        <div class="col-md-10 border solid">
+    <div class="container border solid">
 
-                            <div class="mb-3">
-                                <label for="from" class="form-label">Departure</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="from"
-                                       th:field="*{departure}"
-                                       placeholder="please enter starting point"
-                                />
-                                <p th:if="${#fields.hasErrors('departure')}"
-                                   th:errors="*{departure}"
-                                   class="bg-danger rounded">
-                                </p>
-                            </div>
-                            <div class="mb-3">
-                                <label for="to" class="form-label">Arrival</label>
-                                <input type="text"
-                                       class="form-control"
-                                       id="to"
-                                       th:field="*{arrival}"
-                                       placeholder="please enter end point"
-                                />
-                                <p th:if="${#fields.hasErrors('arrival')}"
-                                   th:errors="*{arrival}"
-                                   class="bg-danger rounded">
-                                </p>
-                            </div>
+        <div class="row justify-content-end">
+            <div class="col-md-8 border solid">
+                <div class="row justify-content-end">
+                    <div class="col-md-10 border solid">
 
-                            <div class="mb-3">
-                                <button class="btn btn-info-lg" onclick="calcRoute();">Calculate</button>
-                            </div>
+                        <div class="mb-3">
+                            <label for="from" class="form-label">Departure</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="from"
+                                   placeholder="please enter starting point"
+                            />
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="to" class="form-label">Arrival</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="to"
+                                   placeholder="please enter end point"
+                            />
+
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn btn-info-lg" onclick="calcRoute();">Calculate</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end">
-                <div class="col-md-11 border solid" id="googleMap"></div>
-                <div class="col-md-11 border solid" id="output"></div>
-            </div>
-
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-md-11 border solid" id="googleMap"></div>
+            <div class="col-md-11 border solid" id="output"></div>
         </div>
 
+    </div>
+    <form th:action="@{/rides/publish}"
+          th:method="post"
+          th:object="${publishRideModel}">
         <div class="container border solid mt-4">
             <div class="row justify-content-end">
+                <div class="col-md-11 border solid">
+                    <div class="row">
+                        <div class="col-md-4 border solid">
+                            <p>Destination details</p>
+                            <small>Fields in this category will be populated automatically when you enter
+                                Departure and Arrival (in the forms above the card) and press calculate </small>
+                        </div>
+                        <div class="col-md-8 border solid">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="mb-3 w-75">
+                                        <label for="departure" class="form-label">Start point</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="departure"
+                                               readonly
+                                               th:field="*{departure}"
+                                        />
+                                        <div th:if="${#fields.hasErrors('departure')}"
+                                             th:errors="*{departure}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="mb-3 w-75">
+                                        <label for="arrival" class="form-label">End point</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="arrival"
+                                               readonly
+                                               th:field="*{arrival}"
+                                        />
+                                        <div th:if="${#fields.hasErrors('arrival')}"
+                                             th:errors="*{arrival}"
+                                             class="bg-danger rounded">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-11 border solid">
                     <div class="row">
                         <div class="col-md-4 border solid">

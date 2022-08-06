@@ -12,6 +12,19 @@
     background-size: cover;
 }
 
+.search{
+    background-image: url("/images/search-468971613-1024x1024.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+
 #googleMap{
     min-height: 500px;
 }

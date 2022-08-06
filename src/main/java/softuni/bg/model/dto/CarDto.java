@@ -50,6 +50,4 @@ public class CarDto {
         this.licensePlate = licensePlate;
         return this;
     }
-
-
 }

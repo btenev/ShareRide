@@ -4,10 +4,8 @@ import softuni.bg.model.enums.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
@@ -54,10 +52,7 @@ public class UserEntity extends BaseEntity {
     private AddressEntity address;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Set<RoleEntity> roles = new HashSet<>();
-
-    @OneToMany
-    private List<RideEntity> rides = new ArrayList<>();
+    private List<RoleEntity> roles = new ArrayList<>();
 
     public UserEntity() {
     }
@@ -116,6 +111,15 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public UserEntity setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+
     public LanguageEnum getLanguage() {
         return language;
     }
@@ -170,40 +174,17 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public Set<RoleEntity> getRoles() {
+    public List<RoleEntity> getRoles() {
         return roles;
     }
 
-    public UserEntity setRoles(Set<RoleEntity> roles) {
+    public UserEntity setRoles(List<RoleEntity> roles) {
         this.roles = roles;
         return this;
     }
 
-    public List<RideEntity> getRides() {
-        return rides;
-    }
-
-    public UserEntity setRides(List<RideEntity> rides) {
-        this.rides = rides;
-        return this;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public UserEntity setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    public UserEntity addRole(RoleEntity role) {
+    public UserEntity addRole (RoleEntity role) {
         this.roles.add(role);
-        return this;
-    }
-
-    public UserEntity addRide(RideEntity ride) {
-        this.rides.add(ride);
         return this;
     }
 }

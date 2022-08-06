@@ -7,6 +7,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "rides")
@@ -38,10 +40,16 @@ public class RideEntity extends BaseEntity {
     @Column(name = "trip_information", columnDefinition = "TEXT")
     private String tripInformation;
 
-    @ManyToOne
-    private RoleEntity driver;
+    private boolean active;
+
+    private boolean archived;
 
     @ManyToOne
+    private UserEntity driver;
+
+    @OneToMany
+    private List<UserEntity> passengers = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.ALL)
     private CarEntity car;
 
     public RideEntity() {
@@ -119,14 +127,6 @@ public class RideEntity extends BaseEntity {
         return this;
     }
 
-    public RoleEntity getDriver() {
-        return driver;
-    }
-
-    public RideEntity setDriver(RoleEntity driver) {
-        this.driver = driver;
-        return this;
-    }
 
     public CarEntity getCar() {
         return car;
@@ -138,4 +138,39 @@ public class RideEntity extends BaseEntity {
     }
 
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public RideEntity setActive(boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public RideEntity setArchived(boolean archived) {
+        this.archived = archived;
+        return this;
+    }
+
+    public UserEntity getDriver() {
+        return driver;
+    }
+
+    public RideEntity setDriver(UserEntity driver) {
+        this.driver = driver;
+        return this;
+    }
+
+    public List<UserEntity> getPassengers() {
+        return passengers;
+    }
+
+    public RideEntity setPassengers(List<UserEntity> passengers) {
+        this.passengers = passengers;
+        return this;
+    }
 }

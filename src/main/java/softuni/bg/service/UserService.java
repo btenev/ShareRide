@@ -31,11 +31,8 @@ public class UserService {
                         .userRegisterDtoToUserEntity(userRegisterDto)
                         .setPassword(this.passwordEncoder.encode(userRegisterDto.getPassword()));
 
-        RoleEntity passengerRole = this.roleRepository.findByUserRole(RoleEnum.PASSENGER);
-        newUser.addRole(passengerRole);
-
-        RoleEntity driverRole = this.roleRepository.findByUserRole(RoleEnum.DRIVER);
-        newUser.addRole(driverRole);
+        RoleEntity userRole = this.roleRepository.findByUserRole(RoleEnum.USER);
+        newUser.addRole(userRole);
 
         this.userRepository.save(newUser);
     }

@@ -23,31 +23,35 @@ public class AddressEntity extends BaseEntity {
         return country;
     }
 
-    public void setCountry(String country) {
+    public AddressEntity setCountry(String country) {
         this.country = country;
+        return this;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public AddressEntity setCity(String city) {
         this.city = city;
+        return this;
     }
 
     public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode) {
+    public AddressEntity setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+        return this;
     }
 
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
+    public AddressEntity setStreet(String street) {
         this.street = street;
+        return this;
     }
 }

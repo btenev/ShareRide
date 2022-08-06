@@ -25,9 +25,17 @@ directionsDisplay.setMap(map);
 
 function calcRoute() {
     //request
+    let fromOrigin = document.getElementById("from").value;
+    let toDestination = document.getElementById("to").value;
+
+    document.getElementById("departure").value = fromOrigin;
+    document.getElementById("arrival").value = toDestination;
+
+
     const request = {
-        origin: document.getElementById("from").value,
-        destination: document.getElementById("to").value,
+        origin: fromOrigin,
+        destination: toDestination,
+
         travelMode: google.maps.TravelMode.DRIVING,  // other modes: WALKING, BICYCLING AND TRANSIT
         unitSystem: google.maps.UnitSystem.METRIC
     };
@@ -47,7 +55,7 @@ function calcRoute() {
             directionsDisplay.setDirections(result);
         } else {
             //delete routes from map
-            directionsDisplay.setDirections({ routes: [] });
+            directionsDisplay.setDirections({routes: []});
 
             //center map - mylatlng
             map.setCenter(mylatlng);
