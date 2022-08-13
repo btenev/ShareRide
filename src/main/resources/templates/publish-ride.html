@@ -26,7 +26,10 @@
                     <div class="col-md-10 border solid">
 
                         <div class="mb-3">
-                            <label for="from" class="form-label">Departure</label>
+                            <label for="from"
+                                   class="form-label"
+                                   th:text="#{publish_ride_departure}"
+                            >Departure</label>
                             <input type="text"
                                    class="form-control"
                                    id="from"
@@ -35,7 +38,10 @@
 
                         </div>
                         <div class="mb-3">
-                            <label for="to" class="form-label">Arrival</label>
+                            <label for="to"
+                                   class="form-label"
+                                   th:text="#{publish_ride_arrival}"
+                            >Arrival</label>
                             <input type="text"
                                    class="form-control"
                                    id="to"
@@ -45,7 +51,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button class="btn btn-info-lg" onclick="calcRoute();">Calculate</button>
+                            <button class="btn btn-info-lg" th:text="#{publish_ride_calculate}" onclick="calcRoute();">Calculate</button>
                         </div>
                     </div>
                 </div>
@@ -65,7 +71,7 @@
                 <div class="col-md-11 border solid">
                     <div class="row">
                         <div class="col-md-4 border solid">
-                            <p>Destination details</p>
+                            <p th:text="#{publish_ride_travel_details}" >Travel details</p>
                             <small>Fields in this category will be populated automatically when you enter
                                 Departure and Arrival (in the forms above the card) and press calculate </small>
                         </div>
@@ -74,7 +80,10 @@
                                 <div class="col-md-6">
 
                                     <div class="mb-3 w-75">
-                                        <label for="departure" class="form-label">Start point</label>
+                                        <label for="departure"
+                                               class="form-label"
+                                               th:text="#{publish_ride_departure}"
+                                        >Start point</label>
                                         <input type="text"
                                                class="form-control"
                                                id="departure"
@@ -92,7 +101,10 @@
                                 <div class="col-md-6">
 
                                     <div class="mb-3 w-75">
-                                        <label for="arrival" class="form-label">End point</label>
+                                        <label for="arrival"
+                                               class="form-label"
+                                               th:text="#{publish_ride_arrival}"
+                                        >End point</label>
                                         <input type="text"
                                                class="form-control"
                                                id="arrival"
@@ -116,14 +128,17 @@
                 <div class="col-md-11 border solid">
                     <div class="row">
                         <div class="col-md-4 border solid">
-                            <p>Date & time</p>
+                            <p th:text="#{publish_ride_date_and_time}">Date & time</p>
                         </div>
                         <div class="col-md-8 border solid">
                             <div class="row">
                                 <div class="col-md-6">
 
                                     <div class="mb-3 w-75">
-                                        <label for="departureDate" class="form-label">Departure date</label>
+                                        <label for="departureDate"
+                                               class="form-label"
+                                               th:text="#{publish_ride_departure_date}"
+                                        >Departure date</label>
                                         <input type="date"
                                                class="form-control"
                                                id="departureDate"
@@ -138,7 +153,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3 w-75">
-                                        <label for="departureTime" class="form-label">Time departure</label>
+                                        <label for="departureTime"
+                                               class="form-label"
+                                               th:text="#{publish_ride_time_of_departure}"
+                                        >Time departure</label>
                                         <input type="time"
                                                class="form-control"
                                                id="departureTime"
@@ -160,14 +178,17 @@
                 <div class="col-md-11 border solid">
                     <div class="row">
                         <div class="col-md-4 border solid">
-                            <p>More details</p>
+                            <p th:text="#{publish_ride_more_details}">More details</p>
                         </div>
                         <div class="col-md-8 border solid">
                             <div class="row">
                                 <div class="col-md-6">
 
                                     <div class="mb-3 w-75">
-                                        <label for="numberOfSeats" class="form-label">Number of seats</label>
+                                        <label for="numberOfSeats"
+                                               class="form-label"
+                                               th:text="#{publish_ride_number_of_seats}"
+                                        >Number of seats</label>
                                         <select class="form-select"
                                                 id="numberOfSeats"
                                                 th:field="*{numberOfSeats}"
@@ -189,7 +210,10 @@
                                 <div class="col-md-6">
 
                                     <div class="mb-3 w-75">
-                                        <label for="baggageQuantity" class="form-label">Allowed luggage</label>
+                                        <label for="baggageQuantity"
+                                               class="form-label"
+                                               th:text="#{publish_ride_allowed_luggage}"
+                                        >Allowed luggage</label>
                                         <select class="form-select"
                                                 id="baggageQuantity"
                                                 th:field="*{baggageQuantity}"
@@ -213,7 +237,10 @@
                             <div class="row">
                                 <div class="col-md-11 border solid">
                                     <div>
-                                        <label for="price" class="form-label">Estimated price</label>
+                                        <label for="price"
+                                               class="form-label"
+                                               th:text="#{publish_ride_estimated_price}"
+                                        >Estimated price</label>
                                         <input type="text"
                                                class="form-control"
                                                id="price"
@@ -222,7 +249,10 @@
                                     </div>
 
                                     <div>
-                                        <label for="tripInformation" class="form-label">Extra trip
+                                        <label for="tripInformation"
+                                               class="form-label"
+                                               th:text="#{publish_ride_extra_trip_information}"
+                                        >Extra trip
                                             information</label>
                                         <textarea class="form-control"
                                                   id="tripInformation"
@@ -240,14 +270,17 @@
                 <div class="col-md-11 border solid">
                     <div class="row">
                         <div class="col-md-4 border solid">
-                            <p>Car details</p>
+                            <p th:text="#{publish_ride_car_details}">Car details</p>
                         </div>
                         <div class="col-md-8 border solid">
                             <div class="row">
                                 <div class="col-md-6">
 
                                     <div class="mb-3 w-75">
-                                        <label for="brand" class="form-label">Car brand</label>
+                                        <label for="brand"
+                                               class="form-label"
+                                               th:text="#{publish_ride_car_brand}"
+                                        >Car brand</label>
                                         <input type="text"
                                                class="form-control"
                                                id="brand"
@@ -260,7 +293,10 @@
                                     </div>
 
                                     <div class="mb-3 w-75">
-                                        <label for="color" class="form-label">Car color</label>
+                                        <label for="color"
+                                               class="form-label"
+                                               th:text="#{publish_ride_car_color}"
+                                        >Car color</label>
                                         <input type="text"
                                                class="form-control"
                                                id="color"
@@ -277,7 +313,10 @@
                                 <div class="col-md-6">
 
                                     <div class="mb-3 w-75">
-                                        <label for="model" class="form-label">Car model</label>
+                                        <label for="model"
+                                               class="form-label"
+                                               th:text="#{publish_ride_car_model}"
+                                        >Car model</label>
                                         <input type="text"
                                                class="form-control"
                                                id="model"
@@ -290,7 +329,10 @@
                                     </div>
 
                                     <div class="mb-3 w-75">
-                                        <label for="licensePlate" class="form-label">Car license plate</label>
+                                        <label for="licensePlate"
+                                               class="form-label"
+                                               th:text="#{publish_ride_car_license_plate}"
+                                        >Car license plate</label>
                                         <input type="text"
                                                class="form-control"
                                                id="licensePlate"

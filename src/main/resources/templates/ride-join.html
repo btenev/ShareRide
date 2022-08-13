@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareRide</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+<header>
+  <th:block th:include="~{/fragments/nav.html}"/>
+</header>
+<main>
+  <input type="hidden" name="rideId" id="rideId" th:value="${id}">
+  <div class="container ride-details my-4" th:object="${ride}">
+    <div class="row justify-content-center"  >
+      <div class="card w-50">
+      <div class="card-body">
+        <h5 class="card-title" th:text="'Your request will be reviewed by ' +  *{driver.firstName} + ' ' + *{driver.lastName}"></h5>
+        <p class="card-text" th:text="'You requested to join the ride from ' + *{departure} + ' to ' + *{arrival}
+      + ' that will take place on ' + *{departureDate} + ' from ' + *{departureTime} +
+      '.'"></p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+</main>
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2022 Company, Inc</p>
+  </footer>
+</div>
+
+<script src="/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

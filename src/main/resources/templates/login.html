@@ -22,7 +22,9 @@
 
                         <div class="mb-3 w-75">
                             <label for="username"
-                                   class="form-label">Email</label>
+                                   class="form-label"
+                                   th:text="#{login_username}"
+                            >Email</label>
                             <input type="text"
                                    class="form-control"
                                    id="username"
@@ -32,7 +34,10 @@
                         </div>
 
                         <div class="mb-3 w-75">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password"
+                                   class="form-label"
+                                   th:text="#{login_password}"
+                            >Password</label>
                             <input type="password"
                                    class="form-control"
                                    id="password"

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,21 +22,21 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/rides/my-rides">MyRides</a>
+                    <a class="nav-link active" sec:authorize="isAuthenticated()" th:text="#{navbar_my_rides}" href="/rides/my-rides">My rides</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                    <a class="nav-link active" href="/pages/admins">Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">UserControl</a>
+                    <a class="nav-link active" sec:authorize="isAuthenticated()" th:text="#{navbar_ride_requests}" href="/rides/consider-request">Ride requests</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">ShareRide in numbers</a>
+                    <a class="nav-link active" th:text="#{navbar_search}" href="/rides/search">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/rides/search">Search</a>
+                    <a class="nav-link active" sec:authorize="isAuthenticated()" th:text="#{navbar_publish}" href="/rides/publish">Publish a ride</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/rides/publish">Publish a ride</a>
-                </li>
-                <li>
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                            data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,16 +46,45 @@
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1"
                             data-popper-placement="bottom-end"
                             style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 34.4px, 0px);">
-                            <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
-                            <li><a class="dropdown-item" href="/users/login">Sign in</a></li>
-                            <li><a class="dropdown-item" href="/users/register">Sign up</a></li>
-                            <li>
+                            <li class="nav-item" sec:authorize="isAuthenticated()">
+                                <div class="form-inline my-2 my-lg-0 px-3">
+                                    <div>Welcome, <th:block th:text="${#authentication.principal.username}">
+                                        X</th:block>!</div>
+                                </div>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/users/logout">Sign out</a></li>
+                            <li sec:authorize="isAuthenticated()">
+                                <a class="dropdown-item" th:text="#{navbar_profile}" href="/users/profile">Profile</a>
+                            </li>
+                            <li sec:authorize="!isAuthenticated()">
+                                <a class="dropdown-item" th:text="#{navbar_login}" href="/users/login">Sign in</a>
+                            </li>
+                            <li sec:authorize="!isAuthenticated()">
+                                <a class="dropdown-item" th:text="#{navbar_register}" href="/users/register">Sign up</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()">
+                                <hr class="dropdown-divider">
+                                <form class="dropdown-item p-0" th:action="@{/users/logout}" th:method="post">
+                                    <input class="btn btn-link nav-link py-0 ps-3 pe-0"
+                                           type="submit" th:value="#{navbar_logout}">
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item rounded">
+                    <form th:method="get">
+                        <label  for="lang"></label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </li>
+
             </ul>
         </div>
     </div>

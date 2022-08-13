@@ -22,16 +22,17 @@ public class RideSpecification implements Specification<RideEntity> {
                                  CriteriaBuilder cb) {
 
         Predicate p = cb.conjunction();
+//        p.getExpressions().add(cb.and(cb.isTrue(root.get("active"))));
 
         if (searchRideDto.getDeparture() != null && !searchRideDto.getDeparture().isEmpty()) {
             p.getExpressions().add(
-                    cb.and(cb.like(root.get("departure"), searchRideDto.getDeparture()))
+                    cb.and(cb.equal(root.get("departure"), searchRideDto.getDeparture() + ", Bulgaria"))
             );
         }
 
         if (searchRideDto.getArrival() != null && !searchRideDto.getArrival().isEmpty()) {
             p.getExpressions().add(
-                    cb.and(cb.like(root.get("arrival"), searchRideDto.getArrival()))
+                    cb.and(cb.equal(root.get("arrival"), searchRideDto.getArrival() + ", Bulgaria"))
             );
         }
 
@@ -44,7 +45,7 @@ public class RideSpecification implements Specification<RideEntity> {
 
         if (searchRideDto.getDepartureTime() != null) {
             p.getExpressions().add(
-                    cb.and(cb.equal(root.get("departureTime"), searchRideDto.getDepartureTime()))
+                    cb.and(cb.greaterThanOrEqualTo(root.get("departureTime"), searchRideDto.getDepartureTime()))
             );
         }
 

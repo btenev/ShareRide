@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShareAride</title>
+    <title>ShareRide</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/css/custom.css">
 </head>
@@ -90,27 +90,32 @@
         </div>
 
         <div class="row justify-content-center">
-            <div th:each="ride : ${rides}" class="col-md-8 border solid">
+            <div th:each="ride : ${rides}" th:object="${ride}" class="col-md-8 border solid">
                 <div class="row bg-secondary bg-gradient">
                     <div class="col-md-2 text-light border solid">
-                        <p>Date: <th:block th:text="*{ride.departureDate}"/></p>
+                        <p>Date: <th:block th:text="*{departureDate}"/></p>
                     </div>
-                    <div class="col-md-5 border solid">
+                    <div class="col-md-4 border solid">
                         <ul class="list-group text-light">
-                            <li class="context-name" th:text="'Driver name: ' + *{ride.driver.firstName} + ' ' + *{ride.driver.lastName}">  /></li>
-                            <li class="context-name" th:text="'Departure hour: ' + *{ride.departureTime}"></li>
+                            <li class="context-name" th:text="'Driver name: ' + *{driver.firstName} + ' ' + *{driver.lastName}"></li>
+                            <li class="context-name" th:text="'Departure hour: ' + *{departureTime}"></li>
                         </ul>
                     </div>
-                    <div class="col-md-5 border solid">
+                    <div class="col-md-4 border solid">
                         <ul class="list-group text-light">
-                            <li class="context-name">Price</li>
-                            <li class="context-name">Departure city</li>
-                            <li class="context-name">Arrival city</li>
-                            <li class="context-name">Number of available seats</li>
+                            <li class="context-name" th:text="'Price: ' + *{price}"></li>
+                            <li class="context-name" th:text="'Departure city: ' + *{departure.replace(', Bulgaria', '')}"></li>
+                            <li class="context-name" th:text="'Arrival city: ' + *{arrival.replace(', Bulgaria', '')}"></li>
+                            <li class="context-name" th:text="'Number of available seats: ' + *{numberOfSeats.value}"></li>
                         </ul>
+                    </div>
+                    <div class="col-md-2 border solid">
+                        <div class="row">
+                            <a th:href="@{/rides/details/{id}(id=*{id})}" class="btn btn-secondary btn-lg">Details</a>
+                        </div>
                     </div>
                 </div>
-<!--                <a href="#" class="stretched-link"></a>-->
+
             </div>
         </div>
     </div>

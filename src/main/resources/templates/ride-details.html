@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareRide</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+<header>
+    <th:block th:include="~{/fragments/nav.html}"/>
+</header>
+<main>
+    <input type="hidden" name="rideId" id="rideId" th:value="${id}">
+    <div class="container my-4" th:object="${ride}">
+        <div class="row g-0">
+            <h1 class="text-center bg-info">Ride Details</h1>
+
+            <div class="col-md-5 border solid">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <ul class="list-group g-0">
+                            <li class="context-name"
+                                th:text="'Driver name: ' + *{driver.firstName} + ' ' + *{driver.lastName} "></li>
+                            <li class="context-name" th:text="'Departure time: ' + *{departureTime}"></li>
+                            <li class="context-name"
+                                th:text="'Departure city: ' + *{departure.replace(', Bulgaria', '')}"></li>
+                            <li class="context-name"
+                                th:text="'Arrival place: ' + *{arrival.replace(', Bulgaria', '')}"></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 text-center">
+                        <span th:text="'Price: ' + *{price}"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <h5>Trip details</h5>
+
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="context-name" th:text="'Car brand: ' + *{car.brand}"></li>
+                            <li class="context-name" th:text="'Car model: ' + *{car.model}"></li>
+                            <li class="context-name" th:text="'Car color: ' + *{car.color} "></li>
+                            <li class="context-name" th:text="'Car plate: ' + *{car.licensePlate}"></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="context-name" th:text="'Free seats: ' + *{numberOfSeats.name()}"></li>
+                            <li class="context-name" th:text="'Allowed bagage: ' + *{baggageQuantity.name()}"></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="row mb-3">
+                    <h5 th:text="'About ' + *{driver.firstName}"></h5>
+
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="context-name" th:text="'Gender: ' + *{driver.gender.name()}"></li>
+                            <li class="context-name" th:text="'Age: ' + *{driver.calculateAge()}"></li>
+                            <li class="context-name" th:text="*{driver.communication.getMessage()}"></li>
+                            <li class="context-name" th:text="*{driver.music.getMessage()}"></li>
+                            <li class="context-name" th:text="*{driver.smoking.getMessage()}"></li>
+                            <li class="context-name" th:text="*{driver.pet.getMessage()}"></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-md-6">
+            <textarea class="form-control"
+                      id="tripInformation"
+                      th:text="*{tripInformation}"
+                      rows="6"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a th:sec="{}"  th:href="@{/rides/request-join/{id}(id=*{id})}" class="btn btn-secondary btn-lg">Join
+                            ride</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7 border solid">
+                <div class="col-md-12 border solid" id="googleMap"></div>
+                <div class="col-md-12 border solid" id="output"></div>
+
+                <input type="hidden" id="from" th:field="*{departure}">
+                <input type="hidden" id="to" th:field="*{arrival}">
+
+
+            </div>
+        </div>
+
+    </div>
+
+</main>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2022 Company, Inc</p>
+    </footer>
+</div>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfYtwqdbf2aEIkKukIKEqwbKyYkxC4n0c&libraries=places">
+</script>
+<script src="/js/google-javascript-display.js"></script>
+<script src="/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

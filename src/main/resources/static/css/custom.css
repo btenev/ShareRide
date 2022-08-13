@@ -1,3 +1,10 @@
+.index-image{
+    background-image: url("/images/index-main-02.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .register{
     background-image: url("/images/register-main-01.jpg");
     background-repeat: no-repeat;
@@ -13,11 +20,29 @@
 }
 
 .search{
-    background-image: url("/images/search-468971613-1024x1024.jpg");
+    background-image: url("/images/search.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
+}
+
+.consider{
+    background-image: url("/images/driver-1345472132-1024x1024.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.admin{
+    background-image: url("/images/admin-page.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.ride-details{
+    min-height: 500px;
 }
 
 ul {

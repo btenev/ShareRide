@@ -49,6 +49,6 @@ public class RideControllerIT {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/"));
     }
-    //    @Valid
-    //    private CarDto car;
+//        @Valid
+//        private CarDto car;
 }

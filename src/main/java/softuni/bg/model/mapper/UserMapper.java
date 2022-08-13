@@ -1,6 +1,7 @@
 package softuni.bg.model.mapper;
 
 import org.mapstruct.Mapper;
+import softuni.bg.model.dto.UserDetailsDto;
 import softuni.bg.model.dto.UserRegisterDto;
 import softuni.bg.model.entity.UserEntity;
 
@@ -8,4 +9,6 @@ import softuni.bg.model.entity.UserEntity;
 public interface UserMapper {
 
     UserEntity userRegisterDtoToUserEntity(UserRegisterDto userRegisterDto);
+
+    UserDetailsDto userEntityToUserDetailsDto(UserEntity userEntity);
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareRide</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+<header>
+  <th:block th:include="~{/fragments/nav.html}"/>
+</header>
+<main>
+  <div class="consider container my-4 border solid vh-100">
+
+    <div class="row justify-content-center" th:each="r : ${rideConsider}"  th:object="${r}">
+      <div class="col-md-8 border solid">
+        <div class="row bg-secondary bg-gradient">
+          <div class="col-md-2 text-light border solid">
+            <p>Date</p>
+            <p><th:block th:text="*{departureDate}"/></p>
+          </div>
+          <div class="col-md-4 border solid">
+            <ul class="list-group text-light">
+              <li class="context-name" th:text="'Departure city: ' + *{departure.replace(', Bulgaria', '')}"></li>
+              <li class="context-name" th:text="'Arrival city: ' + *{arrival.replace(', Bulgaria', '')}"></li>
+              <li class="context-name" th:text="'Departure hour: ' + *{departureTime}"></li>
+            </ul>
+          </div>
+          <div class="col-md-4 border solid">
+            <ul class="list-group text-light">
+              <li class="context-name" th:text="'Passenger name: ' + *{passengerFirstname} + ' ' + *{passengerLastname}" >Price</li>
+              <li class="context-name" th:text="'Number of seats: ' + *{numberOfSeats.value}" >Number of seats</li>
+            </ul>
+          </div>
+          <div class="col-md-2 border solid">
+            <div class="row">
+              <a th:href="@{/rides/approve-request/{rideStatusId}/{passengerId}/{rideId}
+               (rideStatusId=*{id}, passengerId=*{passengerId}, rideId=*{rideId})}" class="btn btn-secondary btn-lg">Approve</a>
+            </div>
+            <div class="row">
+              <a th:href="@{/rides/reject-request/{rideStatusId}
+               (rideStatusId=*{id})}" class="btn btn-secondary btn-lg">Reject</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2022 Company, Inc</p>
+  </footer>
+</div>
+<script src="/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

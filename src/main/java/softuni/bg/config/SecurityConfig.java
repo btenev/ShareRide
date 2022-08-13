@@ -33,8 +33,9 @@ public class SecurityConfig {
                 // everyone can download static resources (.css, javascript and images)
                 .antMatchers("/css/**", "/js/**", "/images/**", "/bootstrap/**").permitAll()
                 // everyone can log in and register
-                .antMatchers("/", "/users/login", "/users/register").permitAll()
-                .antMatchers("/rides/**").permitAll()
+                .antMatchers("/", "/users/login", "/users/register/**").permitAll()
+                .antMatchers("/rides/search/**").permitAll()
+                .antMatchers("/api/data").permitAll()
                 // pages accessible to the admin
                 .antMatchers("/pages/admins").hasRole(RoleEnum.ADMIN.name())
                 // all other pages are accessible after user authentication - logged user

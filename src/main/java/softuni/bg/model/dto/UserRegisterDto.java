@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @FieldMatch(
         first = "password",
@@ -192,6 +193,7 @@ public class UserRegisterDto {
         this.phoneNumber = phoneNumber;
         return this;
     }
-
-
+    public long calculateAge() {
+        return ChronoUnit.YEARS.between(this.birthdate, LocalDate.now());
+    }
 }

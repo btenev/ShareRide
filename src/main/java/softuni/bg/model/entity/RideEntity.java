@@ -49,6 +49,9 @@ public class RideEntity extends BaseEntity {
 
     @OneToMany
     private List<UserEntity> passengers = new ArrayList<>();
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    private List<RidesStatusEntity> requests = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.ALL)
     private CarEntity car;
 
@@ -171,6 +174,26 @@ public class RideEntity extends BaseEntity {
 
     public RideEntity setPassengers(List<UserEntity> passengers) {
         this.passengers = passengers;
+        return this;
+    }
+
+
+    public List<RidesStatusEntity> getRequests() {
+        return requests;
+    }
+
+    public RideEntity setRequests(List<RidesStatusEntity> requests) {
+        this.requests = requests;
+        return this;
+    }
+
+    public RideEntity addRidesStatus (RidesStatusEntity ridesStatusEntity) {
+        this.requests.add(ridesStatusEntity);
+        return this;
+    }
+
+    public RideEntity addPassenger(UserEntity passenger) {
+        this.passengers.add(passenger);
         return this;
     }
 }

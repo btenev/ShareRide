@@ -7,6 +7,7 @@ import softuni.bg.model.enums.SeatEnum;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class RideDetailsDto {
 
@@ -30,8 +31,9 @@ public class RideDetailsDto {
 
     private CarDto car;
 
-    private UserRegisterDto driver;
+    private UserDetailsDto driver;
 
+    private List<UserDetailsDto> passengers;
     public RideDetailsDto() {
 
     }
@@ -126,12 +128,21 @@ public class RideDetailsDto {
         return this;
     }
 
-    public UserRegisterDto getDriver() {
+    public UserDetailsDto getDriver() {
         return driver;
     }
 
-    public RideDetailsDto setDriver(UserRegisterDto driver) {
+    public RideDetailsDto setDriver(UserDetailsDto driver) {
         this.driver = driver;
+        return this;
+    }
+
+    public List<UserDetailsDto> getPassengers() {
+        return passengers;
+    }
+
+    public RideDetailsDto setPassengers(List<UserDetailsDto> passengers) {
+        this.passengers = passengers;
         return this;
     }
 }

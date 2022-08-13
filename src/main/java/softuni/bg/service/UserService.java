@@ -2,6 +2,7 @@ package softuni.bg.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import softuni.bg.model.dto.UserDetailsDto;
 import softuni.bg.model.dto.UserRegisterDto;
 import softuni.bg.model.entity.RoleEntity;
 import softuni.bg.model.entity.UserEntity;
@@ -9,6 +10,8 @@ import softuni.bg.model.enums.RoleEnum;
 import softuni.bg.model.mapper.UserMapper;
 import softuni.bg.repository.RoleRepository;
 import softuni.bg.repository.UserRepository;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -35,5 +38,13 @@ public class UserService {
         newUser.addRole(userRole);
 
         this.userRepository.save(newUser);
+    }
+
+
+    public Optional<UserDetailsDto> findUserByUsername(String username) {
+        return this.userRepository
+                .findByEmail(username)
+                .map(this.userMapper::userEntityToUserDetailsDto);
+
     }
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareRide</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+<header>
+    <th:block th:include="~{/fragments/nav.html}"/>
+</header>
+<main>
+    <div class="admin container my-4 border solid vh-100">
+
+        <div class="row mb-3 justify-content-center">
+            <div class="col-md-10 mt-5 border solid">
+                <form>
+                    <div class="row justify-content-center">
+
+                        <div class="col-md-3 border solid">
+
+                            <div>
+                                <input type="text"
+                                       class="form-control"
+                                       id="username"
+                                       th:name="username"
+                                       placeholder="please enter username">
+                                <small class="valid-feedback">User with these credentials
+                                    not found!</small>
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-end  gx-5 mt-3">
+                            <div class="col-2 border solid">
+                                <button class="btn btn-primary" type="submit">Find an user</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</main>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2022 Company, Inc</p>
+    </footer>
+</div>
+<script src="/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

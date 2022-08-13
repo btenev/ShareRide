@@ -27,7 +27,10 @@
                         <div class="col-md-6 border solid">
 
                             <div class="mb-3 w-75">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email"
+                                       class="form-label"
+                                       th:text="#{registration_email}"
+                                >Email</label>
                                 <input type="text"
                                        class="form-control"
                                        id="email"
@@ -40,7 +43,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="firstName" class="form-label">First name</label>
+                                <label for="firstName"
+                                       class="form-label"
+                                       th:text="#{registration_first_name}"
+                                >First name</label>
                                 <input type="text"
                                        class="form-control"
                                        id="firstName"
@@ -53,7 +59,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="lastName" class="form-label">Last name</label>
+                                <label for="lastName"
+                                       class="form-label"
+                                       th:text="#{registration_last_name}"
+                                >Last name</label>
                                 <input type="text"
                                        class="form-control"
                                        id="lastName"
@@ -66,7 +75,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="language" class="form-label">Language</label>
+                                <label for="language"
+                                       class="form-label"
+                                       th:text="#{registration_language}"
+                                >Language</label>
                                 <select class="form-select"
                                         id="language"
                                         th:field="*{language}"
@@ -85,11 +97,14 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="gender" class="form-label">Gender</label>
+                                <label for="gender"
+                                       class="form-label"
+                                       th:text="#{registration_gender}"
+                                >Gender</label>
                                 <select class="form-select"
                                         id="gender"
                                         th:field="*{gender}"
-                                    >
+                                >
                                     <option selected value="">Choose...</option>
                                     <option th:each="g : ${T(softuni.bg.model.enums.GenderEnum).values()}"
                                             th:text="${g}"
@@ -104,7 +119,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="birthdate" class="form-label">Birthdate</label>
+                                <label for="birthdate"
+                                       class="form-label"
+                                       th:text="#{registration_birthdate}"
+                                >Birthdate</label>
                                 <input type="date"
                                        class="form-control"
                                        th:field="*{birthdate}"
@@ -117,7 +135,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="phoneNumber" class="form-label">Phone number</label>
+                                <label for="phoneNumber"
+                                       class="form-label"
+                                       th:text="#{registration_phone_number}"
+                                >Phone number</label>
                                 <input type="text"
                                        class="form-control"
                                        id="phoneNumber"
@@ -130,7 +151,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password"
+                                       class="form-label"
+                                       th:text="#{registration_password}"
+                                >Password</label>
                                 <input type="password"
                                        class="form-control"
                                        id="password"
@@ -143,7 +167,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="confirmPassword" class="form-label">Confirm password</label>
+                                <label for="confirmPassword"
+                                       class="form-label"
+                                       th:text="#{registration_confirm_password}"
+                                >Confirm password</label>
                                 <input type="password"
                                        class="form-control"
                                        id="confirmPassword"
@@ -160,7 +187,10 @@
                         <div class="col-md-6  border solid">
 
                             <div class="mb-3 w-75">
-                                <label for="country" class="form-label">Country</label>
+                                <label for="country"
+                                       class="form-label"
+                                       th:text="#{registration_country}"
+                                >Country</label>
                                 <select class="form-select"
                                         id="country"
                                         th:field="*{address.country}">
@@ -174,11 +204,14 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="city" class="form-label">City</label>
+                                <label for="city"
+                                       class="form-label"
+                                       th:text="#{registration_city}"
+                                >City</label>
                                 <select class="form-select"
                                         id="city"
                                         th:field="*{address.city}"
-                                     >
+                                >
                                     <option selected value="">Choose...</option>
                                     <option th:value="Sofia">Sofia</option>
                                     <option th:value="Plovdiv">Plovdiv</option>
@@ -194,7 +227,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="street" class="form-label">Street</label>
+                                <label for="street"
+                                       class="form-label"
+                                       th:text="#{registration_street}"
+                                >Street</label>
                                 <input type="text"
                                        class="form-control"
                                        id="street"
@@ -207,7 +243,10 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="postalCode" class="form-label">Postal code</label>
+                                <label for="postalCode"
+                                       class="form-label"
+                                       th:field="#{registration_postal_code}"
+                                >Postal code</label>
                                 <input type="text"
                                        class="form-control"
                                        id="postalCode"
@@ -220,11 +259,14 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="communication" class="form-label">Communication</label>
+                                <label for="communication"
+                                       class="form-label"
+                                       th:text="#{registration_communication}"
+                                >Communication</label>
                                 <select class="form-select"
                                         id="communication"
                                         th:field="*{communication}"
-                                    >
+                                >
                                     <option selected value="">Choose...</option>
                                     <option th:each="c : ${T(softuni.bg.model.enums.CommunicationEnum).values()}"
                                             th:text="${c.getMessage()}"
@@ -239,11 +281,14 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="smoking" class="form-label">Smoking</label>
+                                <label for="smoking"
+                                       class="form-label"
+                                       th:text="#{registration_smoking}"
+                                >Smoking</label>
                                 <select class="form-select"
                                         id="smoking"
                                         th:field="*{smoking}"
-                                    >
+                                >
                                     <option selected value="">Choose...</option>
                                     <option th:each="s : ${T(softuni.bg.model.enums.SmokingEnum).values()}"
                                             th:text="${s.getMessage()}"
@@ -258,11 +303,14 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="music" class="form-label">Music</label>
+                                <label for="music"
+                                       class="form-label"
+                                       th:text="#{registration_music}"
+                                >Music</label>
                                 <select class="form-select"
                                         id="music"
                                         th:field="*{music}"
-                                    >
+                                >
                                     <option selected value="">Choose...</option>
                                     <option th:each="m : ${T(softuni.bg.model.enums.MusicEnum).values()}"
                                             th:text="${m.getMessage()}"
@@ -277,11 +325,14 @@
                             </div>
 
                             <div class="mb-3 w-75">
-                                <label for="pets" class="form-label">Pet</label>
+                                <label for="pets"
+                                       class="form-label"
+                                       th:text="#{registration_pet}"
+                                >Pet</label>
                                 <select class="form-select"
                                         id="pets"
                                         th:field="*{pet}"
-                                    >
+                                >
                                     <option selected value="">Choose...</option>
                                     <option th:each="p : ${T(softuni.bg.model.enums.PetEnum).values()}"
                                             th:text="${p.getMessage()}"
